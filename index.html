@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="manifest" href="manifest.json" />
+    <!-- Vincula el manifest -->
+    <link rel="stylesheet" href="estilos.css"/>
+    <title>Notas Inteligentes</title>
+  </head>
+  <body>
+    <div class="contenedor">
+      <h1>Notas Inteligentes</h1>
+      <input type="text" id="entradaNota" placeholder="Escribe una nota..." />
+      <button id="botonGuardar">Guardar Nota</button>
+      <ul id="listaNotas"></ul>
+    </div>
+    <script src="appNotas.js"></script>
+    <script>
+      // Registro del service worker
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("/service-worker.js")
+            .then((registration) => {
+              console.log(
+                "Service Worker registrado con éxito:", registration);
+            })
+            .catch((error) => {
+              console.log("Error al registrar el Service Worker:", error);
+
+            });
+        });
+      }
+    </script>
+  </body>
+</html>
